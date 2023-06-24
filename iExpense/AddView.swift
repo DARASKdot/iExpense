@@ -7,6 +7,8 @@ struct AddView: View {
     @State private var amount = 0.0
     
     @ObservedObject var expenses: Expenses
+    
+    @Binding var showingAddExpense: Bool
 
     let types = ["Business", "Personal"]
     
@@ -35,12 +37,9 @@ struct AddView: View {
                 Button("Save") {
                     let item = ExpenseItem(name: name, type: type, amount: Int(amount))
                     expenses.items.append(item)
+                    showingAddExpense = false
                 }
             }
         }
     }
-}
-
-#Preview {
-    AddView(expenses: Expenses())
 }
